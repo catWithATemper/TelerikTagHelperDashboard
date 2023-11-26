@@ -9,7 +9,7 @@
         <p>
             <!-- Stats From Date Picker -->
             @* <input type="datetime-local" value="01/01/1996" /> *@
-            <kendo-datepicker for="StatsFrom" value="new DateTime(1996, 1, 1)" />
+            <kendo-datepicker for="StatsFrom" value="new DateTime(1996, 1, 1)" on-change="onCriteriaChange"/>
         </p>
         <p>
             <label asp-for="StatsTo">Stats To</label>
@@ -17,12 +17,12 @@
         <p>
             <!-- Stats To Date Picker -->
             @*<input type="datetime-local" value="01/01/1998" />*@
-            <kendo-datepicker for="StatsTo" value="new DateTime(1998, 1, 1)" />
+            <kendo-datepicker for="StatsTo" value="new DateTime(1998, 1, 1)" on-change="onCriteriaChange"/>
         </p>
         <nav id="employee-list">
             <h3>Team members</h3>
             <!-- Employee List View -->
-            <kendo-treeview name="EmployeesList" datatextfield="FullName">
+            <kendo-treeview name="EmployeesList" datatextfield="FullName" on-data-bound="onListDataBound" on-select="setEmployeeState">
                 <hierarchical-datasource>
                     <transport>
                         <read url="@Url.Action("Employees_Read", "Employees")" typeof="GET" />
